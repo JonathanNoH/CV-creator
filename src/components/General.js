@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 class General extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       personName: '',
@@ -16,7 +16,7 @@ class General extends Component {
 
   handleInputChange = (e) => {
     const target = e.target;
-    const value = e.value;
+    const value = target.value;
     const name = target.name; 
 
     this.setState({
@@ -26,6 +26,7 @@ class General extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.props.handleForm(this.state);
   }
   
   render() {
