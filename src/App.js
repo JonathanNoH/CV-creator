@@ -14,11 +14,15 @@ class App extends React.Component {
     }
   }
 
-  handleForm = ({personName, email, phone}) => {
+  handleGeneralForm = (general) => {
     this.setState({
-      personName,
-      email,
-      phone,
+      general
+    })
+  }
+
+  handleEducationForm = (educationList) => {
+    this.setState({
+      educationList
     })
   }
   
@@ -26,15 +30,17 @@ class App extends React.Component {
     return (
       <div className="App">
         <div>
-          <General handleForm={this.handleForm}/>
-          <Education />
+          <General handleForm={this.handleGeneralForm}/>
+          <Education handleForm={this.handleEducationForm}/>
           <Experience />
         </div>
+        {('general' in this.state) &&
         <div>
-          <div>{this.state.personName}</div>
-          <div>{this.state.email}</div>
-          <div>{this.state.phone}</div>
+          <div>{this.state.general.personName}</div>
+          <div>{this.state.general.email}</div>
+          <div>{this.state.general.phone}</div>
         </div>
+        }
       </div>
     );
   }
