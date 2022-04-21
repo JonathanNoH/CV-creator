@@ -13,6 +13,7 @@ class Education extends React.Component {
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange = (e) => {
@@ -36,8 +37,9 @@ class Education extends React.Component {
       degree: '',
       startDate: '',
       endDate: '',
+    }, () => {
+      this.props.handleForm(this.state.educationList);
     })
-    this.props.handleForm(this.state.educationList);
   }
 
   render() {
