@@ -1,6 +1,7 @@
 import General from "./components/General";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
+import Resume from "./components/Resume";
 import React from "react";
 
 class App extends React.Component {
@@ -8,9 +9,8 @@ class App extends React.Component {
     super()
 
     this.state = {
-      personName : '',
-      email : '',
-      phone : ''
+      general: {},
+      educationList: {},
     }
   }
 
@@ -34,13 +34,10 @@ class App extends React.Component {
           <Education handleForm={this.handleEducationForm}/>
           <Experience />
         </div>
-        {('general' in this.state) &&
-        <div>
-          <div>{this.state.general.personName}</div>
-          <div>{this.state.general.email}</div>
-          <div>{this.state.general.phone}</div>
-        </div>
-        }
+        <Resume 
+          general={this.state.general} 
+          educationList={this.state.educationList}
+        />
       </div>
     );
   }
