@@ -30,15 +30,15 @@ class Education extends React.Component {
       startDate: this.state.startDate,
       endDate: this.state.endDate
     }
-    const oldEducationList = this.state.educationList;
+    //const oldEducationList = this.state.educationList;
     this.setState({
-      educationList : [...oldEducationList, newEducation],
+      //educationList : [...oldEducationList, newEducation],
       school: '',
       degree: '',
       startDate: '',
       endDate: '',
     }, () => {
-      this.props.handleForm(this.state.educationList);
+      this.props.handleForm(newEducation);
     })
   }
 

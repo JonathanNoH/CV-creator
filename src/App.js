@@ -20,9 +20,10 @@ class App extends React.Component {
     })
   }
 
-  handleEducationForm = (educationList) => {
+  handleEducationForm = (newEducation) => {
+    const oldEducationList = this.state.educationList;
     this.setState({
-      educationList
+      educationList : [...oldEducationList, newEducation],
     })
   }
   
@@ -37,6 +38,7 @@ class App extends React.Component {
         <Resume 
           general={this.state.general} 
           educationList={this.state.educationList}
+          onItemEditClicked={this.handleEducationForm}
         />
       </div>
     );
