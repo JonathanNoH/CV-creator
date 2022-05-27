@@ -6,10 +6,15 @@ class Resume extends React.Component {
     super(props)
 
     this.handleItemEdit = this.handleItemEdit.bind(this);
+    this.passUpRemove = this.passUpRemove.bind(this);
   }
 
   handleItemEdit(education, index) {
     this.props.onItemEditClicked(education, index);
+  }
+
+  passUpRemove(index) {
+    this.props.onEducationRemove(index);
   }
 
   render() {
@@ -32,7 +37,13 @@ class Resume extends React.Component {
           {(this.props.educationList.length > 0) &&
             <ul>
               {educationList.map((education, index) => 
-                <ListEducation key={education.school + education.startDate} index={index} value={education} onEditClicked={this.handleItemEdit}/>
+                <ListEducation 
+                  key={education.school + education.startDate} 
+                  index={index} 
+                  value={education} 
+                  onEditClicked={this.handleItemEdit}
+                  onRemove={this.passUpRemove}
+                />
               )}
             </ul>
           }

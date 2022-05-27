@@ -8,6 +8,7 @@ constructor(props) {
 
   this.handleEdit = this.handleEdit.bind(this);
   this.startEdit = this.startEdit.bind(this);
+  this.removeEducation = this.removeEducation.bind(this);
 }
 
   handleEdit(education) {
@@ -15,8 +16,12 @@ constructor(props) {
     this.props.onEditClicked(education, this.props.index);
   }
 
-  startEdit(e) {
+  startEdit() {
     this.setState({isBeingEdited : true});
+  }
+
+  removeEducation() {
+    this.props.onRemove(this.props.index);
   }
   
   render() { 
@@ -29,6 +34,7 @@ constructor(props) {
               <div>{this.props.value.startDate}</div>
               <div>{this.props.value.endDate}</div>
               <button onClick={this.startEdit}>Edit</button>
+              <button onClick={this.removeEducation}>Remove</button>
             </li>)
     } else {
       el = (

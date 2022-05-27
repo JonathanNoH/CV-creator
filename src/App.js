@@ -34,6 +34,14 @@ class App extends React.Component {
       educationList : oldEducationList
     })
   }
+
+  handleEducationRemove = (index) => {
+    const oldEducationList = this.state.educationList;
+    oldEducationList.splice(index, 1);
+    this.setState({
+      educationList : oldEducationList
+    })
+  }
   
   render() {
     return (
@@ -53,6 +61,7 @@ class App extends React.Component {
           general={this.state.general} 
           educationList={this.state.educationList}
           onItemEditClicked={this.handleEducationEdit}
+          onEducationRemove={this.handleEducationRemove}
         />
       </div>
     );
