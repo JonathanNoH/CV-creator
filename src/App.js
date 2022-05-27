@@ -40,7 +40,13 @@ class App extends React.Component {
       <div className="App">
         <div>
           <General handleForm={this.handleGeneralForm}/>
-          <Education handleForm={this.handleEducationForm}/>
+          <Education 
+            handleForm={this.handleEducationForm}
+            currentSchool=''
+            currentDegree=''
+            currentStartDate=''
+            currentEndDate=''
+          />
           <Experience />
         </div>
         <Resume 

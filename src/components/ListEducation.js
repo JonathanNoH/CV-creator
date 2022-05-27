@@ -33,7 +33,13 @@ constructor(props) {
     } else {
       el = (
         <li>
-          <Education handleForm={this.handleEdit}/>
+          <Education 
+            handleForm={this.handleEdit}
+            currentSchool={this.props.value.school}
+            currentDegree={this.props.value.degree}
+            currentStartDate={this.props.value.startDate}
+            currentEndDate={this.props.value.endDate}
+          />
         </li>
       )
     }

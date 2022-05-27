@@ -5,10 +5,10 @@ class Education extends React.Component {
     super(props)
 
     this.state = {
-      school: '',
-      degree: '',
-      startDate: '',
-      endDate: '',
+      school: this.props.currentSchool,
+      degree: this.props.currentDegree,
+      startDate: this.props.currentStartDate,
+      endDate: this.props.currentEndDate,
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
