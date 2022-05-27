@@ -2,6 +2,15 @@ import React from "react";
 import ListEducation from "./ListEducation";
 
 class Resume extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.handleItemEdit = this.handleItemEdit.bind(this);
+  }
+
+  handleItemEdit(education, index) {
+    this.props.onItemEditClicked(education, index);
+  }
 
   render() {
     const educationList = this.props.educationList;
@@ -22,8 +31,8 @@ class Resume extends React.Component {
         <div className="education">
           {(this.props.educationList.length > 0) &&
             <ul>
-              {educationList.map((education) => 
-                <ListEducation key={education.school + education.startDate} value={education}/>
+              {educationList.map((education, index) => 
+                <ListEducation key={education.school + education.startDate} index={index} value={education} onEditClicked={this.handleItemEdit}/>
               )}
             </ul>
           }

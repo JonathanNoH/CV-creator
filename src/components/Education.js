@@ -5,7 +5,6 @@ class Education extends React.Component {
     super(props)
 
     this.state = {
-      educationList: [],
       school: '',
       degree: '',
       startDate: '',
@@ -82,7 +81,6 @@ class Education extends React.Component {
           onChange={this.handleInputChange} />
         </div>
         <input type="submit" value="Add" />
-        <button>Edit</button>
       </form>
     );
   }
