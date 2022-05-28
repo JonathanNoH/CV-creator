@@ -1,0 +1,48 @@
+:root {
+  --main-bg-color: #FCFCFC;
+  --main-color: #2699AD;
+  --main-color-light: #4FDFFA;
+  --main-accent-color: #AD5A15;
+  --main-accent-color-light: #FA9D50;
+  --text-color: #383838;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: local("Comfortaa"),
+    url("../fonts/Comfortaa-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+  font-family: Comfortaa;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header {
+  align-self: center;
+  background-color: var(--main-color);
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+  color: var(--main-bg-color);
+}
+
+.inputForm {
+  display: grid;
+  gap: 1rem;
+}
+
+form > div {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: minmax(35ch, 60ch);
+}

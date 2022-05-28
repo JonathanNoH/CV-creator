@@ -2,7 +2,10 @@ import General from "./components/General";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
 import Resume from "./components/Resume";
+import Header from "./components/Header";
 import React from "react";
+import './styles/reset.css';
+import './styles/app.css';
 
 class App extends React.Component {
   constructor() {
@@ -46,7 +49,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <div>
+        <Header />
+        <div className="inputForm">
           <General handleForm={this.handleGeneralForm}/>
           <Education 
             handleForm={this.handleEducationForm}
