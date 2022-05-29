@@ -1,5 +1,6 @@
 import React from "react";
 import ListEducation from "./ListEducation";
+import '../styles/resume.css';
 
 class Resume extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Resume extends React.Component {
     const educationList = this.props.educationList;
 
     return (
-      <div>
+      <div className="resume">
         <div className='general'>
           {('personName' in this.props.general) && 
           <div>{this.props.general.personName}</div>
@@ -34,6 +35,7 @@ class Resume extends React.Component {
           }
         </div>
         <div className="education">
+          <h2>Education</h2>
           {(this.props.educationList.length > 0) &&
             <ul>
               {educationList.map((education, index) => 

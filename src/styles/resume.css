@@ -1,0 +1,41 @@
+.resume {
+  display: grid;
+  grid-template-columns: minmax(35ch, 70ch);
+  padding: 1rem;
+  margin-bottom: 4rem;
+  margin-top: 1.5rem;
+  background-color: white;
+  box-shadow: 5px 3px 10px rgb(184, 184, 184);
+}
+
+.general div:first-child {
+  font-size: 2rem;
+}
+
+.general,
+.education {
+  padding-bottom: 0.25rem;
+  border-bottom: 0.25rem solid var(--main-color);
+}
+
+.education h2 {
+  padding-top: 0.5rem;
+}
+
+li {
+  position: relative;
+}
+
+li .buttonHolder {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+li button {
+  display: none;
+}
+
+li:hover button {
+  display: inline-block;
+}

@@ -43,7 +43,7 @@ class Education extends React.Component {
 
   render() {
     return (
-      <form className="education" onSubmit={this.handleSubmit}>
+      <form className="educationInput" onSubmit={this.handleSubmit}>
         <div>
           <label htmlFor="school">School: </label>
           <input 

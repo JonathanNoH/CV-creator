@@ -28,17 +28,19 @@ constructor(props) {
     const isBeingEdited = this.state.isBeingEdited;
     let el;
     if (!isBeingEdited) {
-      el = (<li>
+      el = (<div>
               <div>{this.props.value.school}</div>
               <div>{this.props.value.degree}</div>
               <div>{this.props.value.startDate}</div>
               <div>{this.props.value.endDate}</div>
-              <button onClick={this.startEdit}>Edit</button>
-              <button onClick={this.removeEducation}>Remove</button>
-            </li>)
+              <div className="buttonHolder">
+                <button onClick={this.startEdit}>Edit</button>
+                <button onClick={this.removeEducation}>Remove</button>
+              </div>
+            </div>)
     } else {
       el = (
-        <li>
+        <div>
           <Education 
             handleForm={this.handleEdit}
             currentSchool={this.props.value.school}
@@ -46,13 +48,13 @@ constructor(props) {
             currentStartDate={this.props.value.startDate}
             currentEndDate={this.props.value.endDate}
           />
-        </li>
+        </div>
       )
     }
     return (
-      <div>
+      <li>
         {el}
-      </div>
+      </li>
     )
   }
 }

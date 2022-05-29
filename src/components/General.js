@@ -31,7 +31,7 @@ class General extends Component {
   
   render() {
     return (
-      <form className="general" onSubmit={this.handleSubmit}>
+      <form className="generalInput" onSubmit={this.handleSubmit}>
         <div>
           <label htmlFor="personName">Name: </label>
           <input 
