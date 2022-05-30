@@ -2,14 +2,14 @@ import React from "react";
 import Education from "./Education";
 
 class ListEducation extends React.Component {
-constructor(props) {
-  super(props);
-  this.state = {isBeingEdited: false};
+  constructor(props) {
+    super(props);
+    this.state = {isBeingEdited: false};
 
-  this.handleEdit = this.handleEdit.bind(this);
-  this.startEdit = this.startEdit.bind(this);
-  this.removeEducation = this.removeEducation.bind(this);
-}
+    this.handleEdit = this.handleEdit.bind(this);
+    this.startEdit = this.startEdit.bind(this);
+    this.removeEducation = this.removeEducation.bind(this);
+  }
 
   handleEdit(education) {
     this.setState({isBeingEdited : false});

@@ -1,25 +1,38 @@
 import React from "react";
 import ListEducation from "./ListEducation";
+import ListExperience from "./ListExperience";
+import uniqid from "uniqid";
 import '../styles/resume.css';
 
 class Resume extends React.Component {
   constructor(props) {
     super(props)
 
-    this.handleItemEdit = this.handleItemEdit.bind(this);
-    this.passUpRemove = this.passUpRemove.bind(this);
+    this.handleEducationEdit = this.handleEducationEdit.bind(this);
+    this.passUpEducationRemove = this.passUpEducationRemove.bind(this);
+    this.handleExperienceEdit = this.handleExperienceEdit.bind(this);
+    this.passUpExperienceRemove = this.passUpExperienceRemove.bind(this);
   }
 
-  handleItemEdit(education, index) {
-    this.props.onItemEditClicked(education, index);
+  handleEducationEdit(education, index) {
+    this.props.onEducationItemEditClicked(education, index);
   }
 
-  passUpRemove(index) {
+  passUpEducationRemove(index) {
     this.props.onEducationRemove(index);
+  }
+
+  handleExperienceEdit(experience, index) {
+    this.props.onExperienceItemEditClicked(experience, index);
+  }
+
+  passUpExperienceRemove(index) {
+    this.props.onExperienceRemove(index);
   }
 
   render() {
     const educationList = this.props.educationList;
+    const experienceList = this.props.experienceList;
 
     return (
       <div className="resume">
@@ -40,11 +53,27 @@ class Resume extends React.Component {
             <ul>
               {educationList.map((education, index) => 
                 <ListEducation 
-                  key={education.school + education.startDate} 
+                  key={uniqid()} 
                   index={index} 
                   value={education} 
-                  onEditClicked={this.handleItemEdit}
-                  onRemove={this.passUpRemove}
+                  onEditClicked={this.handleEducationEdit}
+                  onRemove={this.passUpEducationRemove}
+                />
+              )}
+            </ul>
+          }
+        </div>
+        <div className="experience">
+          <h2>Experience</h2>
+          {(this.props.experienceList.length > 0) &&
+            <ul>
+              {experienceList.map((experience, index) => 
+                <ListExperience
+                  key={uniqid()}
+                  index={index}
+                  value={experience}
+                  onEditClicked={this.handleExperienceEdit}
+                  onRemove={this.passUpExperienceRemove}
                 />
               )}
             </ul>

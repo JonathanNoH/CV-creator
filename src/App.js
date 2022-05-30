@@ -14,6 +14,7 @@ class App extends React.Component {
     this.state = {
       general: {},
       educationList: [],
+      experienceList: [],
     }
   }
 
@@ -46,6 +47,29 @@ class App extends React.Component {
     })
   }
   
+  handleExperienceForm = (newExperience) => {
+    const oldExperienceList = this.state.experienceList;
+    this.setState({
+      experienceList : [...oldExperienceList, newExperience],
+    })
+  }
+
+  handleExperienceEdit = (experience, index) => {
+    const oldExperienceList = this.state.experienceList;
+    oldExperienceList[index] = experience;
+    this.setState({
+      experienceList : oldExperienceList
+    })
+  }
+
+  handleExperienceRemove = (index) => {
+    const oldExperienceList = this.state.experienceList;
+    oldExperienceList.splice(index, 1);
+    this.setState({
+      experienceList : oldExperienceList
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -59,14 +83,26 @@ class App extends React.Component {
             currentStartDate=''
             currentEndDate=''
           />
-          <Experience />
+          <Experience 
+            handleForm={this.handleExperienceForm}
+            currentCompany=''
+            currentPosition=''
+            currentJobDescription=''
+            currentStartDate=''
+            currentEndDate=''
+          />
         </div>
-        {(this.state.educationList.length > 0 || Object.keys(this.state.general).length > 0) && 
+        {(this.state.educationList.length > 0 ||
+          this.state.experienceList.length > 0 || 
+          Object.keys(this.state.general).length > 0) && 
           <Resume 
           general={this.state.general} 
           educationList={this.state.educationList}
-          onItemEditClicked={this.handleEducationEdit}
+          onEducationItemEditClicked={this.handleEducationEdit}
           onEducationRemove={this.handleEducationRemove}
+          experienceList={this.state.experienceList}
+          onExperienceItemEditClicked={this.handleExperienceEdit}
+          onExperienceRemove={this.handleExperienceRemove}
         />}
       </div>
     );
