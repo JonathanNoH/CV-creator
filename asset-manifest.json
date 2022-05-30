@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/cv-creator/static/css/main.da94d039.css",
+    "main.js": "/cv-creator/static/js/main.dac6ad79.js",
+    "static/media/Comfortaa-VariableFont_wght.ttf": "/cv-creator/static/media/Comfortaa-VariableFont_wght.42599e57da15daf79164.ttf",
+    "index.html": "/cv-creator/index.html",
+    "main.da94d039.css.map": "/cv-creator/static/css/main.da94d039.css.map",
+    "main.dac6ad79.js.map": "/cv-creator/static/js/main.dac6ad79.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.da94d039.css",
+    "static/js/main.dac6ad79.js"
+  ]
+}
