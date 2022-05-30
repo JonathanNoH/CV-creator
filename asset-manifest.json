@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/cv-creator/static/css/main.da94d039.css",
-    "main.js": "/cv-creator/static/js/main.dac6ad79.js",
-    "static/media/Comfortaa-VariableFont_wght.ttf": "/cv-creator/static/media/Comfortaa-VariableFont_wght.42599e57da15daf79164.ttf",
-    "index.html": "/cv-creator/index.html",
-    "main.da94d039.css.map": "/cv-creator/static/css/main.da94d039.css.map",
-    "main.dac6ad79.js.map": "/cv-creator/static/js/main.dac6ad79.js.map"
+    "main.css": "/CV-creator/static/css/main.9b5e3639.css",
+    "main.js": "/CV-creator/static/js/main.1968e83f.js",
+    "static/media/Comfortaa-VariableFont_wght.ttf": "/CV-creator/static/media/Comfortaa-VariableFont_wght.42599e57da15daf79164.ttf",
+    "index.html": "/CV-creator/index.html",
+    "main.9b5e3639.css.map": "/CV-creator/static/css/main.9b5e3639.css.map",
+    "main.1968e83f.js.map": "/CV-creator/static/js/main.1968e83f.js.map"
   },
   "entrypoints": [
-    "static/css/main.da94d039.css",
-    "static/js/main.dac6ad79.js"
+    "static/css/main.9b5e3639.css",
+    "static/js/main.1968e83f.js"
   ]
 }
