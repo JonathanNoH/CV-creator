@@ -39,3 +39,9 @@ li button {
 li:hover button {
   display: inline-block;
 }
+
+.date {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

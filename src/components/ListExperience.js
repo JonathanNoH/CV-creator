@@ -31,8 +31,10 @@ class ListExperience extends React.Component {
       el = (<div>
         <div>{this.props.value.company}</div>
         <div>{this.props.value.position}</div>
-        <div>{this.props.value.startDate}</div>
-        <div>{this.props.value.endDate}</div>
+        <div className="date">
+          <span>{this.props.value.startDate} - </span>
+          <span>{this.props.value.endDate}</span>
+        </div>
         <div>{this.props.value.jobDescription}</div>
         <div className="buttonHolder">
           <button onClick={this.startEdit}>Edit</button>
