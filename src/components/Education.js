@@ -23,15 +23,8 @@ class Education extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const newEducation = {
-      school: this.state.school,
-      degree: this.state.degree,
-      startDate: this.state.startDate,
-      endDate: this.state.endDate
-    }
-    //const oldEducationList = this.state.educationList;
+    const newEducation = this.state;
     this.setState({
-      //educationList : [...oldEducationList, newEducation],
       school: '',
       degree: '',
       startDate: '',
