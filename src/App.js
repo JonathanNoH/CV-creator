@@ -61,12 +61,13 @@ class App extends React.Component {
           />
           <Experience />
         </div>
-        <Resume 
+        {(this.state.educationList.length > 0 || Object.keys(this.state.general).length > 0) && 
+          <Resume 
           general={this.state.general} 
           educationList={this.state.educationList}
           onItemEditClicked={this.handleEducationEdit}
           onEducationRemove={this.handleEducationRemove}
-        />
+        />}
       </div>
     );
   }
