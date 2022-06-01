@@ -1,64 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import Experience from "./Experience";
 
-class ListExperience extends React.Component {
-  constructor(props) {
-    super(props)
+const ListExperience = (props) => {
 
-    this.state={isBeingEdited:false}
-    this.handleEdit = this.handleEdit.bind(this);
-    this.startEdit = this.startEdit.bind(this);
-    this.removeExperience = this.removeExperience.bind(this);
+  const [isBeingEdited, setIsBeingEdited] = useState(false);
+
+  const handleEdit = (experience) => {
+    setIsBeingEdited(false);
+    props.onEditClicked(experience, props.index);
   }
 
-  handleEdit(experience) {
-    this.setState({isBeingEdited : false});
-    this.props.onEditClicked(experience, this.props.index);
+  const startEdit = () => {
+    setIsBeingEdited(true);
   }
 
-  startEdit() {
-    this.setState({isBeingEdited : true});
+  const removeExperience = () => {
+    props.onRemove(props.index);
   }
 
-  removeExperience() {
-    this.props.onRemove(this.props.index);
-  }
-
-  render() {
-    const isBeingEdited = this.state.isBeingEdited;
-    let el;
-    if(!isBeingEdited) {
-      el = (<div>
-        <div>{this.props.value.company}</div>
-        <div>{this.props.value.position}</div>
-        <div className="date">
-          <span>{this.props.value.startDate} - </span>
-          <span>{this.props.value.endDate}</span>
-        </div>
-        <div>{this.props.value.jobDescription}</div>
-        <div className="buttonHolder">
-          <button onClick={this.startEdit}>Edit</button>
-          <button onClick={this.removeExperience}>Remove</button>
-        </div>
-      </div>)
-    } else {
-      el = (
-        <div>
-          <Experience 
-            handleForm={this.handleEdit}
-            currentCompany={this.props.value.company}
-            currentPosition={this.props.value.position}
-            currentJobDescription={this.props.value.jobDescription}
-            currentStartDate={this.props.value.startDate}
-            currentEndDate={this.props.value.endDate}
-          />
-        </div>
-      )
-    }
-
+  if (!isBeingEdited) {
     return (
       <li>
-        {el}
+        <div>
+          <div>{props.value.company}</div>
+          <div>{props.value.position}</div>
+          <div className="date">
+            <span>{props.value.startDate} - </span>
+            <span>{props.value.endDate}</span>
+          </div>
+          <div>{props.value.jobDescription}</div>
+          <div className="buttonHolder">
+            <button onClick={startEdit}>Edit</button>
+            <button onClick={removeExperience}>Remove</button>
+          </div>
+        </div>
+      </li>
+    )
+  } else {
+    return (
+      <li>
+        <div>
+          <Experience
+            handleForm={handleEdit}
+            currentCompany={props.value.company}
+            currentPosition={props.value.position}
+            currentJobDescription={props.value.jobDescription}
+            currentStartDate={props.value.startDate}
+            currentEndDate={props.value.endDate}
+          />
+        </div>
       </li>
     )
   }
