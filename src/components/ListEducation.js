@@ -1,61 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import Education from "./Education";
 
-class ListEducation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {isBeingEdited: false};
+const ListEducation = (props) => {
+  const [isBeingEdited, setIsBeingEdited] = useState(false);
 
-    this.handleEdit = this.handleEdit.bind(this);
-    this.startEdit = this.startEdit.bind(this);
-    this.removeEducation = this.removeEducation.bind(this);
+  const handleEdit = (education) => {
+    setIsBeingEdited(false);
+    props.onEditClicked(education, props.index);
   }
 
-  handleEdit(education) {
-    this.setState({isBeingEdited : false});
-    this.props.onEditClicked(education, this.props.index);
+  const startEdit = () => {
+    setIsBeingEdited(true);
   }
 
-  startEdit() {
-    this.setState({isBeingEdited : true});
-  }
-
-  removeEducation() {
-    this.props.onRemove(this.props.index);
+  const removeEducation = () => {
+    props.onRemove(props.index);
   }
   
-  render() { 
-    const isBeingEdited = this.state.isBeingEdited;
-    let el;
-    if (!isBeingEdited) {
-      el = (<div>
-              <div>{this.props.value.school}</div>
-              <div>{this.props.value.degree}</div>
-              <div className="date">
-                <span>{this.props.value.startDate} - </span>
-                <span>{this.props.value.endDate}</span>
-              </div>
-              <div className="buttonHolder">
-                <button onClick={this.startEdit}>Edit</button>
-                <button onClick={this.removeEducation}>Remove</button>
-              </div>
-            </div>)
-    } else {
-      el = (
-        <div>
-          <Education 
-            handleForm={this.handleEdit}
-            currentSchool={this.props.value.school}
-            currentDegree={this.props.value.degree}
-            currentStartDate={this.props.value.startDate}
-            currentEndDate={this.props.value.endDate}
-          />
+  if (!isBeingEdited) {
+    return (
+    <li>
+      <div>
+        <div>{props.value.school}</div>
+        <div>{props.value.degree}</div>
+        <div className="date">
+          <span>{props.value.startDate} - </span>
+          <span>{props.value.endDate}</span>
         </div>
-      )
-    }
+        <div className="buttonHolder">
+          <button onClick={startEdit}>Edit</button>
+          <button onClick={removeEducation}>Remove</button>
+        </div>
+      </div>
+    </li>)
+  } else {
     return (
       <li>
-        {el}
+        <div>
+          <Education
+            handleForm={handleEdit}
+            currentSchool={props.value.school}
+            currentDegree={props.value.degree}
+            currentStartDate={props.value.startDate}
+            currentEndDate={props.value.endDate}
+          />
+        </div>
       </li>
     )
   }
