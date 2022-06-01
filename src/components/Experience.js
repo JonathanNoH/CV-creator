@@ -1,99 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
 
-class Experience extends React.Component {
-  constructor(props) {
-    super(props)
+const Experience = (props) => {
 
-    this.state = {
-      company: this.props.currentCompany,
-      position: this.props.currentPosition,
-      jobDescription: this.props.currentJobDescription,
-      startDate: this.props.currentStartDate,
-      endDate: this.props.currentEndDate
-    }
+  const [company, setCompany] = useState(props.currentCompany);
+  const [position, setPosition] = useState(props.currentPosition);
+  const [jobDescription, setJobDescription] = useState(props.currentJobDescription);
+  const [startDate, setStartDate] = useState(props.currentStartDate);
+  const [endDate, setEndDate] = useState(props.currentEndDate);
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleInputChange = (e) => {
-    this.setState({
-      [e.target.name] : e.target.value
-    });
-  }
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const newWork = this.state;
-    this.setState({
-      company: '',
-      position: '',
-      jobDescription: '',
-      startDate: '',
-      endDate: '',
-    }, () => {
-      this.props.handleForm(newWork);
-    })
+    const newWork = {company, position, jobDescription, startDate, endDate};
+    props.handleForm(newWork);
+    setCompany('');
+    setPosition('');
+    setJobDescription('');
+    setStartDate('');
+    setEndDate('');
   }
 
-  render() {
-    return (
-      <form action="" className="experienceInput" onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="company">Company: </label>
-          <input 
-            type="text" 
-            name="company" 
-            id="company"
-            value={this.state.company}
-            onChange={this.handleInputChange} 
-          />
-        </div>
-        <div>
-          <label htmlFor="position">Position: </label>
-          <input 
-            type="text" 
-            name="position" 
-            id="position" 
-            value={this.state.position}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="job-description">Job Description / Responsibilites: </label>
-          <textarea 
-            name="jobDescription" 
-            id="job-description" 
-            cols="40" 
-            rows="5"
-            value={this.state.jobDescription}
-            onChange={this.handleInputChange}
-          ></textarea>
-        </div>
-        <div>
-          <label htmlFor="job-start-date">Start Date: </label>
-          <input 
-            type="date" 
-            name="startDate" 
-            id="job-start-date"
-            value={this.state.startDate}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="job-end-date">End Date: </label>
-          <input 
-            type="date" 
-            name="endDate" 
-            id="job-end-date"
-            value={this.state.endDate}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <input type="submit" value="Add" />
-      </form>
-    );
-  }
+  return (
+    <form action="" className="experienceInput" onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="company">Company: </label>
+        <input 
+          type="text" 
+          name="company" 
+          id="company"
+          value={company}
+          onChange={(e) => {setCompany(e.target.value)}} 
+        />
+      </div>
+      <div>
+        <label htmlFor="position">Position: </label>
+        <input 
+          type="text" 
+          name="position" 
+          id="position" 
+          value={position}
+          onChange={(e) => {setPosition(e.target.value)}}
+        />
+      </div>
+      <div>
+        <label htmlFor="job-description">Job Description / Responsibilites: </label>
+        <textarea 
+          name="jobDescription" 
+          id="job-description" 
+          cols="40" 
+          rows="5"
+          value={jobDescription}
+          onChange={(e) => {setJobDescription(e.target.value)}}
+        ></textarea>
+      </div>
+      <div>
+        <label htmlFor="job-start-date">Start Date: </label>
+        <input 
+          type="date" 
+          name="startDate" 
+          id="job-start-date"
+          value={startDate}
+          onChange={(e) => {setStartDate(e.target.value)}}
+        />
+      </div>
+      <div>
+        <label htmlFor="job-end-date">End Date: </label>
+        <input 
+          type="date" 
+          name="endDate" 
+          id="job-end-date"
+          value={endDate}
+          onChange={(e) => {setEndDate(e.target.value)}}
+        />
+      </div>
+      <input type="submit" value="Add" />
+    </form>
+  );
 }
 
 export default Experience;
