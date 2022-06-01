@@ -3,110 +3,84 @@ import Education from "./components/Education";
 import Experience from "./components/Experience";
 import Resume from "./components/Resume";
 import Header from "./components/Header";
-import React from "react";
+import React, { useState } from "react";
 import './styles/reset.css';
 import './styles/app.css';
 
-class App extends React.Component {
-  constructor() {
-    super()
+const App = () => {
 
-    this.state = {
-      general: {},
-      educationList: [],
-      experienceList: [],
-    }
+  const [general, setGeneral] = useState({});
+  const handleGeneralForm = (newGeneral) => {
+    setGeneral(newGeneral);
   }
 
-  handleGeneralForm = (general) => {
-    this.setState({
-      general
-    })
+  const [educationList, setEducationList] = useState([]);
+  const addEducation = (education) => {
+    setEducationList([...educationList, education]);
   }
-
-  handleEducationForm = (newEducation) => {
-    const oldEducationList = this.state.educationList;
-    this.setState({
-      educationList : [...oldEducationList, newEducation],
-    })
+  const handleEducationEdit = (education, index) => {
+    setEducationList(educationList.map((element, i) => {
+      if(i === index) {
+        return education;
+      }
+      return element;
+    }))
   }
-
-  handleEducationEdit = (education, index) => {
-    const oldEducationList = this.state.educationList;
-    oldEducationList[index] = education;
-    this.setState({
-      educationList : oldEducationList
-    })
-  }
-
-  handleEducationRemove = (index) => {
-    const oldEducationList = this.state.educationList;
-    oldEducationList.splice(index, 1);
-    this.setState({
-      educationList : oldEducationList
-    })
+  const handleEducationRemove = (index) => {
+    setEducationList(educationList.filter((education, i) => i !== index));
   }
   
-  handleExperienceForm = (newExperience) => {
-    const oldExperienceList = this.state.experienceList;
-    this.setState({
-      experienceList : [...oldExperienceList, newExperience],
-    })
+  const [experienceList, setExperienceList] = useState([]);
+  const addExperience = (experience) => {
+    setExperienceList([...experienceList, experience])
+  }
+  const handleExperienceEdit = (experience, index) => {
+    setExperienceList(experienceList.map((element, i) => {
+      if (i === index) {
+        return experience;
+      }
+      return element;
+    }))
+  }
+  const handleExperienceRemove = (index) => {
+    setExperienceList(experienceList.filter((experience, i) => i !== index));
   }
 
-  handleExperienceEdit = (experience, index) => {
-    const oldExperienceList = this.state.experienceList;
-    oldExperienceList[index] = experience;
-    this.setState({
-      experienceList : oldExperienceList
-    })
-  }
-
-  handleExperienceRemove = (index) => {
-    const oldExperienceList = this.state.experienceList;
-    oldExperienceList.splice(index, 1);
-    this.setState({
-      experienceList : oldExperienceList
-    })
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <div className="inputForm">
-          <General handleForm={this.handleGeneralForm}/>
-          <Education 
-            handleForm={this.handleEducationForm}
-            currentSchool=''
-            currentDegree=''
-            currentStartDate=''
-            currentEndDate=''
-          />
-          <Experience 
-            handleForm={this.handleExperienceForm}
-            currentCompany=''
-            currentPosition=''
-            currentJobDescription=''
-            currentStartDate=''
-            currentEndDate=''
-          />
-        </div>
-        {(this.state.educationList.length > 0 ||
-          this.state.experienceList.length > 0 || 
-          Object.keys(this.state.general).length > 0) && 
-          <Resume 
-          general={this.state.general} 
-          educationList={this.state.educationList}
-          onEducationItemEditClicked={this.handleEducationEdit}
-          onEducationRemove={this.handleEducationRemove}
-          experienceList={this.state.experienceList}
-          onExperienceItemEditClicked={this.handleExperienceEdit}
-          onExperienceRemove={this.handleExperienceRemove}
-        />}
+  return (
+    <div className="App">
+      <Header />
+      <div className="inputForm">
+        <General handleForm={handleGeneralForm}/>
+        <Education 
+          handleForm={addEducation}
+          currentSchool=''
+          currentDegree=''
+          currentStartDate=''
+          currentEndDate=''
+        />
+        <Experience 
+          handleForm={addExperience}
+          currentCompany=''
+          currentPosition=''
+          currentJobDescription=''
+          currentStartDate=''
+          currentEndDate=''
+        />
       </div>
-    );
-  }
+      {(educationList.length > 0 ||
+        experienceList.length > 0 || 
+        Object.keys(general).length > 0) && 
+        <Resume 
+        general={general} 
+        educationList={educationList}
+        onEducationItemEditClicked={handleEducationEdit}
+        onEducationRemove={handleEducationRemove}
+        experienceList={experienceList}
+        onExperienceItemEditClicked={handleExperienceEdit}
+        onExperienceRemove={handleExperienceRemove}
+      />}
+    </div>
+  );
 }
 
 export default App;
