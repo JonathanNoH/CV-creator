@@ -4,84 +4,71 @@ import ListExperience from "./ListExperience";
 import uniqid from "uniqid";
 import '../styles/resume.css';
 
-class Resume extends React.Component {
-  constructor(props) {
-    super(props)
+const Resume = (props) => {
 
-    this.handleEducationEdit = this.handleEducationEdit.bind(this);
-    this.passUpEducationRemove = this.passUpEducationRemove.bind(this);
-    this.handleExperienceEdit = this.handleExperienceEdit.bind(this);
-    this.passUpExperienceRemove = this.passUpExperienceRemove.bind(this);
+  const handleEducationEdit = (education, index) => {
+    props.onEducationItemEditClicked(education, index);
   }
 
-  handleEducationEdit(education, index) {
-    this.props.onEducationItemEditClicked(education, index);
+  const passUpEducationRemove = (index) => {
+    props.onEducationRemove(index);
   }
 
-  passUpEducationRemove(index) {
-    this.props.onEducationRemove(index);
+  const handleExperienceEdit = (experience, index) => {
+    props.onExperienceItemEditClicked(experience, index);
   }
 
-  handleExperienceEdit(experience, index) {
-    this.props.onExperienceItemEditClicked(experience, index);
+  const passUpExperienceRemove = (index) => {
+    props.onExperienceRemove(index);
   }
 
-  passUpExperienceRemove(index) {
-    this.props.onExperienceRemove(index);
-  }
-
-  render() {
-    const educationList = this.props.educationList;
-    const experienceList = this.props.experienceList;
-
-    return (
-      <div className="resume">
-        <div className='general'>
-          {('personName' in this.props.general) && 
-          <div>{this.props.general.personName}</div>
-          }
-          {('email' in this.props.general) && 
-          <div>{this.props.general.email}</div>
-          }
-          {('phone' in this.props.general) && 
-          <div>{this.props.general.phone}</div>
-          }
-        </div>
-        <div className="education">
-          <h2>Education</h2>
-          {(this.props.educationList.length > 0) &&
-            <ul>
-              {educationList.map((education, index) => 
-                <ListEducation 
-                  key={uniqid()} 
-                  index={index} 
-                  value={education} 
-                  onEditClicked={this.handleEducationEdit}
-                  onRemove={this.passUpEducationRemove}
-                />
-              )}
-            </ul>
-          }
-        </div>
-        <div className="experience">
-          <h2>Experience</h2>
-          {(this.props.experienceList.length > 0) &&
-            <ul>
-              {experienceList.map((experience, index) => 
-                <ListExperience
-                  key={uniqid()}
-                  index={index}
-                  value={experience}
-                  onEditClicked={this.handleExperienceEdit}
-                  onRemove={this.passUpExperienceRemove}
-                />
-              )}
-            </ul>
-          }
-        </div>
+  return (
+    <div className="resume">
+      <div className='general'>
+        {('personName' in props.general) && 
+        <div>{props.general.personName}</div>
+        }
+        {('email' in props.general) && 
+        <div>{props.general.email}</div>
+        }
+        {('phone' in props.general) && 
+        <div>{props.general.phone}</div>
+        }
       </div>
-    )
-  }
+      <div className="education">
+        <h2>Education</h2>
+        {(props.educationList.length > 0) &&
+          <ul>
+            {props.educationList.map((education, index) => 
+              <ListEducation 
+                key={uniqid()} 
+                index={index} 
+                value={education} 
+                onEditClicked={handleEducationEdit}
+                onRemove={passUpEducationRemove}
+              />
+            )}
+          </ul>
+        }
+      </div>
+      <div className="experience">
+        <h2>Experience</h2>
+        {(props.experienceList.length > 0) &&
+          <ul>
+            {props.experienceList.map((experience, index) => 
+              <ListExperience
+                key={uniqid()}
+                index={index}
+                value={experience}
+                onEditClicked={handleExperienceEdit}
+                onRemove={passUpExperienceRemove}
+              />
+            )}
+          </ul>
+        }
+      </div>
+    </div>
+  )
 }
 
 export default Resume;
