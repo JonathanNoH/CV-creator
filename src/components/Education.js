@@ -1,82 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 
-class Education extends React.Component {
-  constructor(props) {
-    super(props)
+const Education = (props) => {
+  const [school, setSchool] = useState(props.currentSchool);
+  const [degree, setDegree] = useState(props.currentDegree);
+  const [startDate, setStartDate] = useState(props.currentStartDate);
+  const [endDate, setEndDate] = useState(props.currentEndDate);
 
-    this.state = {
-      school: this.props.currentSchool,
-      degree: this.props.currentDegree,
-      startDate: this.props.currentStartDate,
-      endDate: this.props.currentEndDate,
-    }
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleInputChange = (e) => {
-    this.setState({
-      [e.target.name] : e.target.value
-    });
-  }
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const newEducation = this.state;
-    this.setState({
-      school: '',
-      degree: '',
-      startDate: '',
-      endDate: '',
-    }, () => {
-      this.props.handleForm(newEducation);
-    })
+    const newEducation = {school, degree, startDate, endDate};
+    props.handleForm(newEducation);
+    setSchool('');
+    setDegree('');
+    setStartDate('');
+    setEndDate('');
   }
 
-  render() {
-    return (
-      <form className="educationInput" onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="school">School: </label>
-          <input 
-          type="text" 
-          name="school" 
-          id="school"
-          value={this.state.school}
-          onChange={this.handleInputChange} />
-        </div>
-        <div>
-          <label htmlFor="degree">Degree/Title: </label>
-          <input 
-          type="text" 
-          name="degree" 
-          id="degree"
-          value={this.state.degree}
-          onChange={this.handleInputChange} />
-        </div>
-        <div>
-          <label htmlFor="startDate">Start Date: </label>
-          <input 
-          type="date" 
-          name="startDate" 
-          id="startDate"
-          value={this.state.startDate}
-          onChange={this.handleInputChange} />
-        </div>
-        <div>
-          <label htmlFor="endDate">End Date: </label>
-          <input 
-          type="date" 
-          name="endDate" 
-          id="endDate"
-          value={this.state.endDate}
-          onChange={this.handleInputChange} />
-        </div>
-        <input type="submit" value="Add" />
-      </form>
-    );
-  }
+  return (
+    <form className="educationInput" onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="school">School: </label>
+        <input 
+        type="text" 
+        name="school" 
+        id="school"
+        value={school}
+        onChange={(e) => setSchool(e.target.value)} />
+      </div>
+      <div>
+        <label htmlFor="degree">Degree/Title: </label>
+        <input 
+        type="text" 
+        name="degree" 
+        id="degree"
+        value={degree}
+        onChange={(e) => setDegree(e.target.value)} />
+      </div>
+      <div>
+        <label htmlFor="startDate">Start Date: </label>
+        <input 
+        type="date" 
+        name="startDate" 
+        id="startDate"
+        value={startDate}
+        onChange={(e) => setStartDate(e.target.value)} />
+      </div>
+      <div>
+        <label htmlFor="endDate">End Date: </label>
+        <input 
+        type="date" 
+        name="endDate" 
+        id="endDate"
+        value={endDate}
+        onChange={(e) => setEndDate(e.target.value)} />
+      </div>
+      <input type="submit" value="Add" />
+    </form>
+  );
 }
 
 export default Education;
