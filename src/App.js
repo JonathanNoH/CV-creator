@@ -8,12 +8,12 @@ import './styles/reset.css';
 import './styles/app.css';
 
 const App = () => {
-
+  
   const [general, setGeneral] = useState({});
   const handleGeneralForm = (newGeneral) => {
     setGeneral(newGeneral);
   }
-
+  
   const [educationList, setEducationList] = useState([]);
   const addEducation = (education) => {
     setEducationList([...educationList, education]);
@@ -67,6 +67,7 @@ const App = () => {
           currentEndDate=''
         />
       </div>
+      {/** check if any form items have been filled in and then if that is the case display the resume */}
       {(educationList.length > 0 ||
         experienceList.length > 0 || 
         Object.keys(general).length > 0) && 
